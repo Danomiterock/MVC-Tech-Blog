@@ -7,7 +7,7 @@ Comment.init(
   {
     body: DataTypes.STRING,
   },
-  { sequelize }
+  { sequelize, underscored: true }
 );
 
 module.exports = Comment;

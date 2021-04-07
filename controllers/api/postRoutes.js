@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
       // Comment model here -- attached username to comment
       {
         model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
+        attributes: ["id", "body", "post_id", "user_id", "created_at"],
         include: {
           model: User,
           attributes: ["username", "twitter", "github"],
@@ -46,7 +46,7 @@ router.get("/:id", (req, res) => {
       },
       {
         model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
+        attributes: ["id", "body", "post_id", "user_id", "created_at"],
         include: {
           model: User,
           attributes: ["username", "twitter", "github"],

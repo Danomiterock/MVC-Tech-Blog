@@ -82,15 +82,15 @@ router.get('/', withAuth, async (req, res) => {
       include: [
         {
           model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+          attributes: ['id', 'body', 'post_id', 'user_id', 'created_at'],
           include: {
             model: User,
-            attributes: ['username', 'twitter', 'github']
+            attributes: ['name', 'twitter', 'github']
           }
         },
         {
           model: User,
-          attributes: ['username', 'twitter', 'github']
+          attributes: ['name', 'twitter', 'github']
         }
       ]
     })
@@ -123,28 +123,28 @@ router.get('/create/', withAuth, (req, res) => {
       attributes: [
         'id',
         'title',
-        'created_at',
-        'post_content'
+        // 'created_at',
+        // 'post_content'
       ],
       include: [
         {
           model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+          attributes: ['id', 'body', 'post_id', 'user_id', 'created_at'],
           include: {
             model: User,
-            attributes: ['username', 'twitter', 'github']
+            attributes: ['name']
           }
         },
         {
           model: User,
-          attributes: ['username', 'twitter', 'github']
+          attributes: ['name']
         }
       ]
     })
       .then(dbPostData => {
         // serialize data before passing to template
         const posts = dbPostData.map(post => post.get({ plain: true }));
-        res.render('create-post', { posts, logged_in: true });
+        res.render('new-post', { posts, logged_in: true });
       })
       .catch(err => {
         console.log(err);

@@ -7,7 +7,7 @@ Post.init({
   title:DataTypes.STRING, 
   body:DataTypes.STRING,
 },
-    {sequelize}
+    {sequelize, underscored: true}
 );
 
 module.exports = Post;
