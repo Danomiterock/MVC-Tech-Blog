@@ -42,14 +42,14 @@ router.get("/:id", (req, res) => {
       // include the Comment model here:
       {
         model: User,
-        attributes: ["username", "twitter", "github"],
+        attributes: ["name"],
       },
       {
         model: Comment,
         attributes: ["id", "body", "post_id", "user_id", "created_at"],
         include: {
           model: User,
-          attributes: ["username", "twitter", "github"],
+          attributes: ["name"],
         },
       },
     ],
@@ -67,7 +67,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", withAuth, (req, res) => {
+router.post("/create/", withAuth, (req, res) => {
   Post.create({
     title: req.body.title,
     post_content: req.body.post_content,
